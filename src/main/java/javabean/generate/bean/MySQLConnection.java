@@ -1,4 +1,4 @@
-package javabean.generate.parse;
+package javabean.generate.bean;
 
 public class MySQLConnection {
 	private String host;

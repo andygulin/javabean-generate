@@ -13,9 +13,9 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.lang3.StringUtils;
 
 import javabean.generate.Constants.Args;
+import javabean.generate.bean.MySQLConnection;
 import javabean.generate.bean.Table;
 import javabean.generate.parse.GenerateJavaBean;
-import javabean.generate.parse.MySQLConnection;
 import javabean.generate.parse.Parse;
 
 public class GenerateCode {

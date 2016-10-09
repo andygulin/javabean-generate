@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javabean.generate.Constants;
 import javabean.generate.bean.Column;
+import javabean.generate.bean.MySQLConnection;
 import javabean.generate.bean.Table;
 
 public class Parse {
