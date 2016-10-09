@@ -63,8 +63,8 @@ public class Parse {
 			e.printStackTrace();
 		}
 		Connection conn = null;
-		String url = "jdbc:mysql://%s:%d/test?characterEncoding=utf-8&useSSL=false";
-		url = String.format(url, mySQLConnection.getHost(), mySQLConnection.getPort());
+		String url = "jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&useSSL=false";
+		url = String.format(url, mySQLConnection.getHost(), mySQLConnection.getPort(), mySQLConnection.getDb());
 		try {
 			conn = DriverManager.getConnection(url, mySQLConnection.getUser(), mySQLConnection.getPasswd());
 		} catch (SQLException e) {

@@ -4,21 +4,21 @@ import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
 import static com.google.common.base.CaseFormat.UPPER_CAMEL;
 
 import java.beans.Introspector;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Writer;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 
+import freemarker.cache.ClassTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -29,19 +29,16 @@ import javabean.generate.bean.Table;
 
 public class MakeTemplate {
 
-	private Template temp;
+	private Template template;
 
 	public MakeTemplate() {
 		Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
-		Resource resource = new ClassPathResource(Constants.TEMPLATE_FILE_PATH);
 		try {
-			String filePath = resource.getFile().getPath();
-			String fileDir = filePath.substring(0, filePath.lastIndexOf("\\"));
-			cfg.setDirectoryForTemplateLoading(new File(fileDir));
+			cfg.setTemplateLoader(new ClassTemplateLoader(this.getClass(), StringUtils.EMPTY));
 			cfg.setDefaultEncoding(StandardCharsets.UTF_8.name());
 			cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 			cfg.setLogTemplateExceptions(false);
-			temp = cfg.getTemplate(resource.getFilename());
+			template = cfg.getTemplate(Constants.TEMPLATE_FILE_NAME);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -63,17 +60,19 @@ public class MakeTemplate {
 			}
 		}
 		root.put("columns", table.getColumns());
-		File parent = new File(dir, pkg.replace(Constants.PACKAGE_SEPARATOR, String.valueOf(IOUtils.DIR_SEPARATOR)));
-		FileUtils.forceMkdir(parent);
-		File outFile = new File(parent, className + FilenameUtils.EXTENSION_SEPARATOR_STR + Constants.JAVA_FILE_SUFFIX);
-		Writer out = new FileWriter(outFile);
+		Path parent = Paths.get(dir.getPath(),
+				pkg.replace(Constants.PACKAGE_SEPARATOR, String.valueOf(IOUtils.DIR_SEPARATOR)));
+		Files.createDirectories(parent);
+		Path outFile = Paths.get(parent.toString(),
+				className + FilenameUtils.EXTENSION_SEPARATOR_STR + Constants.JAVA_FILE_SUFFIX);
+		BufferedWriter out = Files.newBufferedWriter(outFile);
 		try {
-			temp.process(root, out);
+			template.process(root, out);
 		} catch (TemplateException e) {
 			e.printStackTrace();
 		}
 		out.flush();
 		out.close();
-		return outFile;
+		return outFile.toFile();
 	}
 }

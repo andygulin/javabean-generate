@@ -2,7 +2,8 @@ package javabean.generate.parse;
 
 public class MySQLConnection {
 	private String host;
-	private int port;
+	private String port;
+	private String db;
 	private String user;
 	private String passwd;
 
@@ -10,10 +11,11 @@ public class MySQLConnection {
 		super();
 	}
 
-	public MySQLConnection(String host, int port, String user, String passwd) {
+	public MySQLConnection(String host, String port, String db, String user, String passwd) {
 		super();
 		this.host = host;
 		this.port = port;
+		this.db = db;
 		this.user = user;
 		this.passwd = passwd;
 	}
@@ -26,12 +28,20 @@ public class MySQLConnection {
 		this.host = host;
 	}
 
-	public int getPort() {
+	public String getPort() {
 		return port;
 	}
 
-	public void setPort(int port) {
+	public void setPort(String port) {
 		this.port = port;
+	}
+
+	public String getDb() {
+		return db;
+	}
+
+	public void setDb(String db) {
+		this.db = db;
 	}
 
 	public String getUser() {

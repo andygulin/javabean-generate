@@ -1,8 +1,11 @@
 package javabean.generate.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Table {
+public class Table implements Serializable {
+
+	private static final long serialVersionUID = -8336625814475155226L;
 
 	private String name;
 	private List<Column> columns;

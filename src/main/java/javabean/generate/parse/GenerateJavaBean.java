@@ -2,6 +2,7 @@ package javabean.generate.parse;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javabean.generate.bean.Table;
@@ -15,15 +16,12 @@ public class GenerateJavaBean {
 		this.tables = tables;
 	}
 
-	public void generate(File dir, String pkg) {
+	public List<File> generate(File dir, String pkg) throws IOException {
+		List<File> outFiles = new ArrayList<>();
 		MakeTemplate makeTemplate = new MakeTemplate();
 		for (Table table : tables) {
-			try {
-				File outFile = makeTemplate.make(table, dir, pkg);
-				System.out.println(outFile);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			outFiles.add(makeTemplate.make(table, dir, pkg));
 		}
+		return outFiles;
 	}
 }

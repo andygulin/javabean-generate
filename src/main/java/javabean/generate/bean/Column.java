@@ -1,6 +1,10 @@
 package javabean.generate.bean;
 
-public class Column {
+import java.io.Serializable;
+
+public class Column implements Serializable {
+
+	private static final long serialVersionUID = 578742059568123887L;
 
 	private String name;
 	private String mName;
