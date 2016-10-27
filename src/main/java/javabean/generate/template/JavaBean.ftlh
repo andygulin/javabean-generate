@@ -17,4 +17,9 @@ public class ${class} implements java.io.Serializable {
 		return ${item.name};
 	}
 	</#list>
+	
+	@Override
+	public String toString() {
+		return org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString(this);
+	}
 }

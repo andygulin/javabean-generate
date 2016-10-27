@@ -22,5 +22,7 @@ public class Constants {
 		public static final String DEFAULT_DB = "test";
 		public static final String DEFAULT_USER = "root";
 		public static final String DEFAULT_PASSWD = "root";
+		public static final String DEFAULT_DIR = "";
+		public static final String DEFAULT_PKG = "com.example";
 	}
 }
