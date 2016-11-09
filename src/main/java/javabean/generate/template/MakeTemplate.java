@@ -14,7 +14,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -63,8 +62,7 @@ public class MakeTemplate {
 		Path parent = Paths.get(dir.getPath(),
 				pkg.replace(Constants.PACKAGE_SEPARATOR, String.valueOf(IOUtils.DIR_SEPARATOR)));
 		Files.createDirectories(parent);
-		Path outFile = Paths.get(parent.toString(),
-				className + FilenameUtils.EXTENSION_SEPARATOR_STR + Constants.JAVA_FILE_SUFFIX);
+		Path outFile = Paths.get(parent.toString(), className + Constants.JAVA_FILE_SUFFIX);
 		BufferedWriter out = Files.newBufferedWriter(outFile);
 		try {
 			template.process(root, out);
