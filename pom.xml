@@ -21,7 +21,7 @@
 
 		<maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
 		<maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
-		<maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+		<maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
 	</properties>
 
 	<dependencies>
