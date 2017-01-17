@@ -12,24 +12,24 @@ public class CommandOptions {
     private static final String DEFAULT_DIR = "";
     private static final String DEFAULT_PKG = "com.example";
 
-    @Parameter(names = {"-host", "-h"}, required = false)
+    @Parameter(names = {"-host", "-h"})
     public String host = DEFAULT_HOST;
 
-    @Parameter(names = {"-port", "-p"}, required = false)
+    @Parameter(names = {"-port", "-p"})
     public String port = DEFAULT_PORT;
 
-    @Parameter(names = {"-database", "-db"}, required = false)
+    @Parameter(names = {"-database", "-db"})
     public String db = DEFAULT_DB;
 
-    @Parameter(names = {"-user", "-u"}, required = false)
+    @Parameter(names = {"-user", "-u"})
     public String user = DEFAULT_USER;
 
-    @Parameter(names = {"-passwd", "-pw"}, required = false)
+    @Parameter(names = {"-passwd", "-pw"})
     public String passwd = DEFAULT_PASSWD;
 
-    @Parameter(names = {"-dir", "-d"}, required = false)
+    @Parameter(names = {"-dir", "-d"})
     public String dir = DEFAULT_DIR;
 
-    @Parameter(names = {"-package", "-pkg"}, required = false)
+    @Parameter(names = {"-package", "-pkg"})
     public String pkg = DEFAULT_PKG;
 }
