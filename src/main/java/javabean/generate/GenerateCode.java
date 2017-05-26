@@ -13,14 +13,14 @@ import java.util.List;
 public class GenerateCode {
     public static void main(String[] args) {
         CommandOptions options = new CommandOptions();
-        new JCommander(options, args);
+        new JCommander(options).parse(args);
 
         List<Table> tables = new Parse(
                 new MySQLConnection(options.host, options.port, options.db, options.user, options.passwd))
                 .getParseTables();
         try {
             List<File> outFiles = new GenerateJavaBean(tables).generate(new File(options.dir), options.pkg);
-            outFiles.forEach((file) -> System.out.println(file));
+            outFiles.forEach(System.out::println);
         } catch (IOException e) {
             e.printStackTrace();
         }

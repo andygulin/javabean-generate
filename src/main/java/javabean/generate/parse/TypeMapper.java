@@ -32,7 +32,7 @@ public class TypeMapper {
     public static Class<?> getMapperClass(int sqlType) {
         Class<?> clazz = null;
         for (Entry<Integer, Class<?>> entry : TYPE_MAPPERS.entrySet()) {
-            if (entry.getKey().intValue() == sqlType) {
+            if (entry.getKey() == sqlType) {
                 clazz = entry.getValue();
                 break;
             }

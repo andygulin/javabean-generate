@@ -1,5 +1,8 @@
 package javabean.generate.bean;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 public class MySQLConnection {
     private String host;
     private String port;
@@ -58,5 +61,10 @@ public class MySQLConnection {
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.JSON_STYLE);
     }
 }
