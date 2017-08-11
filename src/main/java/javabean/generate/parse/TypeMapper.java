@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class TypeMapper {
+class TypeMapper {
 
     private static final Map<Integer, Class<?>> TYPE_MAPPERS = new HashMap<>();
 
@@ -29,7 +29,7 @@ public class TypeMapper {
         TYPE_MAPPERS.put(Types.TIMESTAMP, Date.class);
     }
 
-    public static Class<?> getMapperClass(int sqlType) {
+    static Class<?> getMapperClass(int sqlType) {
         Class<?> clazz = null;
         for (Entry<Integer, Class<?>> entry : TYPE_MAPPERS.entrySet()) {
             if (entry.getKey() == sqlType) {

@@ -3,7 +3,12 @@ package javabean.generate.bean;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-public class MySQLConnection {
+import java.io.Serializable;
+
+public class MySQLConnection implements Serializable {
+
+    private static final long serialVersionUID = 707757681293611120L;
+
     private String host;
     private String port;
     private String db;

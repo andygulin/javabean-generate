@@ -58,8 +58,7 @@ public class MakeTemplate {
             }
         }
         root.put("columns", table.getColumns());
-        Path parent = Paths.get(dir.getPath(),
-                pkg.replace(Constants.PACKAGE_SEPARATOR, String.valueOf(IOUtils.DIR_SEPARATOR)));
+        Path parent = Paths.get(dir.getPath(), pkg.replace(Constants.PACKAGE_SEPARATOR, String.valueOf(IOUtils.DIR_SEPARATOR)));
         Files.createDirectories(parent);
         Path outFile = Paths.get(parent.toString(), className + Constants.JAVA_FILE_SUFFIX);
         BufferedWriter out = Files.newBufferedWriter(outFile);

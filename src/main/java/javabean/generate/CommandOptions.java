@@ -13,23 +13,23 @@ public class CommandOptions {
     private static final String DEFAULT_PKG = "com.example";
 
     @Parameter(names = {"-host", "-h"})
-    public String host = DEFAULT_HOST;
+    String host = DEFAULT_HOST;
 
     @Parameter(names = {"-port", "-p"})
-    public String port = DEFAULT_PORT;
+    String port = DEFAULT_PORT;
 
     @Parameter(names = {"-database", "-db"})
-    public String db = DEFAULT_DB;
+    String db = DEFAULT_DB;
 
     @Parameter(names = {"-user", "-u"})
-    public String user = DEFAULT_USER;
+    String user = DEFAULT_USER;
 
     @Parameter(names = {"-passwd", "-pw"})
-    public String passwd = DEFAULT_PASSWD;
+    String passwd = DEFAULT_PASSWD;
 
     @Parameter(names = {"-dir", "-d"})
-    public String dir = DEFAULT_DIR;
+    String dir = DEFAULT_DIR;
 
     @Parameter(names = {"-package", "-pkg"})
-    public String pkg = DEFAULT_PKG;
+    String pkg = DEFAULT_PKG;
 }

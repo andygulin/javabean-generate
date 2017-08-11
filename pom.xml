@@ -12,14 +12,14 @@
         <compile.level>1.8</compile.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <commons-lang3.version>3.5</commons-lang3.version>
+        <commons-lang3.version>3.6</commons-lang3.version>
         <commons-io.version>2.5</commons-io.version>
-        <jcommander.version>1.69</jcommander.version>
-        <guava.version>22.0</guava.version>
-        <mysql-connector-java.version>5.1.42</mysql-connector-java.version>
+        <jcommander.version>1.72</jcommander.version>
+        <guava.version>23.0</guava.version>
+        <mysql-connector-java.version>5.1.43</mysql-connector-java.version>
         <freemarker.version>2.3.23</freemarker.version>
 
-        <maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
         <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
     </properties>
