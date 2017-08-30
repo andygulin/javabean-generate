@@ -7,13 +7,13 @@ mvn clean package
 	
 ### 参数
 ```
--host/-h			数据库地址，默认localhost
--port/-p			数据库端口，默认3306
--database/-db		数据库名，默认test
--user/-u			数据库用户名，默认root
--passwd	/-pw		数据库密码，默认root
--dir/-d				JavaBean生成路径，默认当前目录
--package/-pkg		JavaBean包名，默认com.example
+-host/-h            数据库地址，默认localhost
+-port/-p            数据库端口，默认3306
+-database/-db       数据库名，默认test
+-user/-u            数据库用户名，默认root
+-passwd	/-pw        数据库密码，默认root
+-dir/-d             JavaBean生成路径，默认当前目录
+-package/-pkg       JavaBean包名，默认com.example
 ```
 	
 ### 使用 & 完整参数
