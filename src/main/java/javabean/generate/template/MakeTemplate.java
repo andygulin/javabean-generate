@@ -30,7 +30,7 @@ public class MakeTemplate {
     private Template template;
 
     public MakeTemplate() {
-        Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
         try {
             cfg.setTemplateLoader(new ClassTemplateLoader(this.getClass(), StringUtils.EMPTY));
             cfg.setDefaultEncoding(StandardCharsets.UTF_8.name());
@@ -51,10 +51,10 @@ public class MakeTemplate {
             String columnName = column.getName();
             if (StringUtils.indexOf(columnName, Constants.CAMELCASE_SYMBOL) != StringUtils.INDEX_NOT_FOUND) {
                 column.setName(Introspector.decapitalize(LOWER_UNDERSCORE.to(UPPER_CAMEL, columnName)));
-                column.setmName(LOWER_UNDERSCORE.to(UPPER_CAMEL, columnName));
+                column.setMName(LOWER_UNDERSCORE.to(UPPER_CAMEL, columnName));
             } else {
                 column.setName(Introspector.decapitalize(columnName));
-                column.setmName(columnName);
+                column.setMName(columnName);
             }
         }
         root.put("columns", table.getColumns());
