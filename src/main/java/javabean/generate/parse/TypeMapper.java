@@ -27,6 +27,7 @@ class TypeMapper {
         TYPE_MAPPERS.put(Types.DATE, Date.class);
         TYPE_MAPPERS.put(Types.TIME, Date.class);
         TYPE_MAPPERS.put(Types.TIMESTAMP, Date.class);
+        TYPE_MAPPERS.put(Types.LONGVARCHAR, String.class);
     }
 
     static Class<?> getMapperClass(int sqlType) {

@@ -12,10 +12,10 @@
         <compile.level>1.8</compile.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <commons-lang3.version>3.8</commons-lang3.version>
+        <commons-lang3.version>3.9</commons-lang3.version>
         <commons-io.version>2.6</commons-io.version>
         <jcommander.version>1.72</jcommander.version>
-        <guava.version>26.0-jre</guava.version>
+        <guava.version>27.1-jre</guava.version>
         <mysql-connector-java.version>5.1.47</mysql-connector-java.version>
         <freemarker.version>2.3.28</freemarker.version>
         <lombok.version>1.18.2</lombok.version>
