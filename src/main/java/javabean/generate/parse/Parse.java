@@ -6,11 +6,7 @@ import javabean.generate.bean.MySQLConnection;
 import javabean.generate.bean.Table;
 import org.apache.commons.lang3.StringUtils;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
