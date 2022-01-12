@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Parse {
 
-    private MySQLConnection mySQLConnection;
+    private final MySQLConnection mySQLConnection;
 
     public Parse(MySQLConnection mySQLConnection) {
         this.mySQLConnection = mySQLConnection;

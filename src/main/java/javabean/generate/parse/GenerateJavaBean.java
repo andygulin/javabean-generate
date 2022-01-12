@@ -10,7 +10,7 @@ import java.util.List;
 
 public class GenerateJavaBean {
 
-    private List<Table> tables;
+    private final List<Table> tables;
 
     public GenerateJavaBean(List<Table> tables) {
         this.tables = tables;
