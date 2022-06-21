@@ -16,7 +16,7 @@
         <commons-io.version>2.11.0</commons-io.version>
         <jcommander.version>1.81</jcommander.version>
         <guava.version>31.0.1-jre</guava.version>
-        <mysql-connector-java.version>8.0.25</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.28</mysql-connector-java.version>
         <freemarker.version>2.3.31</freemarker.version>
         <lombok.version>1.18.22</lombok.version>
 
