@@ -1,5 +1,7 @@
 package javabean.generate.parse;
 
+import lombok.extern.log4j.Log4j2;
+
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.sql.Types;
@@ -8,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+@Log4j2
 class TypeMapper {
 
     private static final Map<Integer, Class<?>> TYPE_MAPPERS = new HashMap<>();
@@ -28,6 +31,8 @@ class TypeMapper {
         TYPE_MAPPERS.put(Types.TIME, Date.class);
         TYPE_MAPPERS.put(Types.TIMESTAMP, Date.class);
         TYPE_MAPPERS.put(Types.LONGVARCHAR, String.class);
+
+        log.info("Support Types: {}", TYPE_MAPPERS);
     }
 
     static Class<?> getMapperClass(int sqlType) {

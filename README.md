@@ -12,7 +12,7 @@ mvn clean package
 -database/-db       数据库名，默认test
 -user/-u            数据库用户名，默认root
 -passwd	/-pw        数据库密码，默认root
--dir/-d             JavaBean生成路径，默认当前目录
+-output/-o          JavaBean生成路径，默认当前目录
 -package/-pkg       JavaBean包名，默认com.example
 ```
 	
@@ -24,7 +24,7 @@ java -jar target/javabean-generate-0.0.1-jar-with-dependencies.jar \
                                                     -database test \
                                                     -user root \
                                                     -passwd root \
-                                                    -dir D:/ \
+                                                    -output D:/ \
                                                     -package com.test
 ```
 	

@@ -9,7 +9,7 @@ public class CommandOptions {
     private static final String DEFAULT_DB = "test";
     private static final String DEFAULT_USER = "root";
     private static final String DEFAULT_PASSWD = "root";
-    private static final String DEFAULT_DIR = "";
+    private static final String DEFAULT_OUTPUT = "";
     private static final String DEFAULT_PKG = "com.example";
 
     @Parameter(names = {"-host", "-h"})
@@ -27,8 +27,8 @@ public class CommandOptions {
     @Parameter(names = {"-passwd", "-pw"})
     String passwd = DEFAULT_PASSWD;
 
-    @Parameter(names = {"-dir", "-d"})
-    String dir = DEFAULT_DIR;
+    @Parameter(names = {"-output", "-o"})
+    String output = DEFAULT_OUTPUT;
 
     @Parameter(names = {"-package", "-pkg"})
     String pkg = DEFAULT_PKG;

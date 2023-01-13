@@ -2,12 +2,13 @@ package javabean.generate.parse;
 
 import javabean.generate.bean.Table;
 import javabean.generate.template.MakeTemplate;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 public class GenerateJavaBean {
 
     private final List<Table> tables;
@@ -16,12 +17,11 @@ public class GenerateJavaBean {
         this.tables = tables;
     }
 
-    public List<File> generate(File dir, String pkg) throws IOException {
-        List<File> outFiles = new ArrayList<>();
+    public void generate(File dir, String pkg) throws IOException {
         MakeTemplate makeTemplate = new MakeTemplate();
         for (Table table : tables) {
-            outFiles.add(makeTemplate.make(table, dir, pkg));
+            File file = makeTemplate.make(table, dir, pkg);
+            log.info("Generate File : {}", file);
         }
-        return outFiles;
     }
 }

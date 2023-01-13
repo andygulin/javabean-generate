@@ -4,12 +4,14 @@ import javabean.generate.Constants;
 import javabean.generate.bean.Column;
 import javabean.generate.bean.MySQLConnection;
 import javabean.generate.bean.Table;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Log4j2
 public class Parse {
 
     private final MySQLConnection mySQLConnection;
@@ -63,6 +65,7 @@ public class Parse {
         url = String.format(url, mySQLConnection.getHost(), mySQLConnection.getPort(), mySQLConnection.getDb());
         try {
             conn = DriverManager.getConnection(url, mySQLConnection.getUser(), mySQLConnection.getPasswd());
+            log.info("Connection DB Success...");
         } catch (SQLException e) {
             e.printStackTrace();
         }

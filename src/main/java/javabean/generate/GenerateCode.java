@@ -5,11 +5,13 @@ import javabean.generate.bean.MySQLConnection;
 import javabean.generate.bean.Table;
 import javabean.generate.parse.GenerateJavaBean;
 import javabean.generate.parse.Parse;
+import lombok.extern.log4j.Log4j2;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+@Log4j2
 public class GenerateCode {
     public static void main(String[] args) {
         CommandOptions options = new CommandOptions();
@@ -23,9 +25,9 @@ public class GenerateCode {
                         options.user,
                         options.passwd
                 )).getParseTables();
+        log.info("Table Count : " + tables.size());
         try {
-            List<File> outFiles = new GenerateJavaBean(tables).generate(new File(options.dir), options.pkg);
-            outFiles.forEach(System.out::println);
+            new GenerateJavaBean(tables).generate(new File(options.output), options.pkg);
         } catch (IOException e) {
             e.printStackTrace();
         }

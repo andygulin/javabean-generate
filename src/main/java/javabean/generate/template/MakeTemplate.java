@@ -8,6 +8,7 @@ import freemarker.template.TemplateExceptionHandler;
 import javabean.generate.Constants;
 import javabean.generate.bean.Column;
 import javabean.generate.bean.Table;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,9 +23,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.google.common.base.CaseFormat.LOWER_UNDERSCORE;
-import static com.google.common.base.CaseFormat.UPPER_CAMEL;
+import static com.google.common.base.CaseFormat.*;
 
+@Log4j2
 public class MakeTemplate {
 
     private Template template;
@@ -56,6 +57,7 @@ public class MakeTemplate {
                 column.setName(Introspector.decapitalize(columnName));
                 column.setMName(columnName);
             }
+            column.setMName(UPPER_UNDERSCORE.to(UPPER_CAMEL, column.getMName()));
         }
         root.put("columns", table.getColumns());
         Path parent = Paths.get(dir.getPath(), pkg.replace(Constants.PACKAGE_SEPARATOR, String.valueOf(IOUtils.DIR_SEPARATOR)));
@@ -65,7 +67,9 @@ public class MakeTemplate {
         try {
             template.process(root, out);
         } catch (TemplateException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
+            log.error(className);
+            log.error(table.getColumns());
         }
         out.flush();
         out.close();
