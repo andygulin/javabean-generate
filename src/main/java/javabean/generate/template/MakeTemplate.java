@@ -31,7 +31,7 @@ public class MakeTemplate {
     private Template template;
 
     public MakeTemplate() {
-        Configuration cfg = new Configuration(Configuration.VERSION_2_3_31);
+        Configuration cfg = new Configuration(Configuration.VERSION_2_3_32);
         try {
             cfg.setTemplateLoader(new ClassTemplateLoader(this.getClass(), StringUtils.EMPTY));
             cfg.setDefaultEncoding(StandardCharsets.UTF_8.name());

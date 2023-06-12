@@ -25,13 +25,13 @@ public class Parse {
         Connection conn = getConnection();
         ResultSet rs = null;
         try {
-            DatabaseMetaData dbmd = conn.getMetaData();
-            rs = dbmd.getTables(conn.getCatalog(), null, null, new String[]{"TABLE"});
+            DatabaseMetaData metaData = conn.getMetaData();
+            rs = metaData.getTables(conn.getCatalog(), null, null, new String[]{"TABLE"});
             ResultSet colRs;
             List<Column> columns;
             while (rs.next()) {
                 String tableName = rs.getString("TABLE_NAME");
-                colRs = dbmd.getColumns(null, "%", tableName, "%");
+                colRs = metaData.getColumns(null, "%", tableName, "%");
                 columns = new ArrayList<>();
                 while (colRs.next()) {
                     String colName = colRs.getString("COLUMN_NAME");
