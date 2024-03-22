@@ -5,11 +5,12 @@ import javabean.generate.bean.Column;
 import javabean.generate.bean.MySQLConnection;
 import javabean.generate.bean.Table;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javabean.generate.Constants.*;
 
 @Log4j2
 public class Parse {
@@ -37,9 +38,9 @@ public class Parse {
                     String colName = colRs.getString("COLUMN_NAME");
                     int sqlType = colRs.getInt("DATA_TYPE");
                     String javaType = TypeMapper.getMapperClass(sqlType).getName();
-                    String pkg = StringUtils.substringBeforeLast(javaType, Constants.PACKAGE_SEPARATOR);
-                    if (StringUtils.equals(pkg, Constants.DEFAULT_PACKAGE)) {
-                        javaType = StringUtils.substringAfterLast(javaType, Constants.PACKAGE_SEPARATOR);
+                    String pkg = substringBeforeLast(javaType);
+                    if (pkg.equals(Constants.DEFAULT_PACKAGE)) {
+                        javaType = substringAfterLast(javaType);
                     }
                     columns.add(new Column(colName, sqlType, javaType));
                 }
@@ -47,7 +48,7 @@ public class Parse {
                 close(colRs);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
         close(rs);
         close(conn);
@@ -58,7 +59,7 @@ public class Parse {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
         Connection conn = null;
         String url = "jdbc:mysql://%s:%s/%s?characterEncoding=utf-8&useSSL=false";
@@ -67,7 +68,7 @@ public class Parse {
             conn = DriverManager.getConnection(url, mySQLConnection.getUser(), mySQLConnection.getPasswd());
             log.info("Connection DB Success...");
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
 
         return conn;
@@ -78,7 +79,7 @@ public class Parse {
             try {
                 conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             }
         }
     }
@@ -88,8 +89,37 @@ public class Parse {
             try {
                 rs.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                e.printStackTrace(System.err);
             }
         }
+    }
+
+    private String substringBeforeLast(final String str) {
+        if (isEmpty(str) || isEmpty(PACKAGE_SEPARATOR)) {
+            return str;
+        }
+        final int pos = str.lastIndexOf(PACKAGE_SEPARATOR);
+        if (pos == INDEX_NOT_FOUND) {
+            return str;
+        }
+        return str.substring(0, pos);
+    }
+
+    private String substringAfterLast(final String str) {
+        if (isEmpty(str)) {
+            return str;
+        }
+        if (isEmpty(PACKAGE_SEPARATOR)) {
+            return EMPTY_STRING;
+        }
+        final int pos = str.lastIndexOf(PACKAGE_SEPARATOR);
+        if (pos == INDEX_NOT_FOUND || pos == str.length() - PACKAGE_SEPARATOR.length()) {
+            return EMPTY_STRING;
+        }
+        return str.substring(pos + PACKAGE_SEPARATOR.length());
+    }
+
+    private boolean isEmpty(final CharSequence cs) {
+        return cs == null || cs.length() == 0;
     }
 }

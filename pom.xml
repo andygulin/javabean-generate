@@ -12,31 +12,19 @@
         <compile.level>1.8</compile.level>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <commons-lang3.version>3.12.0</commons-lang3.version>
-        <commons-io.version>2.13.0</commons-io.version>
         <jcommander.version>1.82</jcommander.version>
-        <guava.version>32.0.1-jre</guava.version>
-        <mysql-connector-j.version>8.0.33</mysql-connector-j.version>
+        <guava.version>33.1.0-jre</guava.version>
+        <mysql-connector-j.version>8.3.0</mysql-connector-j.version>
         <freemarker.version>2.3.32</freemarker.version>
-        <lombok.version>1.18.28</lombok.version>
-        <log4j.version>2.20.0</log4j.version>
+        <lombok.version>1.18.32</lombok.version>
+        <log4j.version>2.23.1</log4j.version>
 
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
-        <maven-assembly-plugin.version>3.6.0</maven-assembly-plugin.version>
+        <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <maven-assembly-plugin.version>3.7.1</maven-assembly-plugin.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
         <dependency>
             <groupId>com.beust</groupId>
             <artifactId>jcommander</artifactId>

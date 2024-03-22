@@ -29,7 +29,7 @@ public class GenerateCode {
         try {
             new GenerateJavaBean(tables).generate(new File(options.output), options.pkg);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 }

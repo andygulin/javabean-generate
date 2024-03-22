@@ -9,8 +9,6 @@ import javabean.generate.Constants;
 import javabean.generate.bean.Column;
 import javabean.generate.bean.Table;
 import lombok.extern.log4j.Log4j2;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.beans.Introspector;
 import java.io.BufferedWriter;
@@ -24,6 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.google.common.base.CaseFormat.*;
+import static javabean.generate.Constants.DIR_SEPARATOR;
+import static javabean.generate.Constants.EMPTY_STRING;
 
 @Log4j2
 public class MakeTemplate {
@@ -33,13 +33,13 @@ public class MakeTemplate {
     public MakeTemplate() {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_32);
         try {
-            cfg.setTemplateLoader(new ClassTemplateLoader(this.getClass(), StringUtils.EMPTY));
+            cfg.setTemplateLoader(new ClassTemplateLoader(this.getClass(), EMPTY_STRING));
             cfg.setDefaultEncoding(StandardCharsets.UTF_8.name());
             cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
             cfg.setLogTemplateExceptions(false);
             template = cfg.getTemplate(Constants.TEMPLATE_FILE_NAME);
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(System.err);
         }
     }
 
@@ -50,7 +50,7 @@ public class MakeTemplate {
         root.put("class", className);
         for (Column column : table.getColumns()) {
             String columnName = column.getName();
-            if (StringUtils.indexOf(columnName, Constants.CAMELCASE_SYMBOL) != StringUtils.INDEX_NOT_FOUND) {
+            if (columnName.contains(Constants.CAMELCASE_SYMBOL)) {
                 column.setName(Introspector.decapitalize(LOWER_UNDERSCORE.to(UPPER_CAMEL, columnName)));
                 column.setMName(LOWER_UNDERSCORE.to(UPPER_CAMEL, columnName));
             } else {
@@ -60,7 +60,7 @@ public class MakeTemplate {
             column.setMName(UPPER_UNDERSCORE.to(UPPER_CAMEL, column.getMName()));
         }
         root.put("columns", table.getColumns());
-        Path parent = Paths.get(dir.getPath(), pkg.replace(Constants.PACKAGE_SEPARATOR, String.valueOf(IOUtils.DIR_SEPARATOR)));
+        Path parent = Paths.get(dir.getPath(), pkg.replace(Constants.PACKAGE_SEPARATOR, DIR_SEPARATOR));
         Files.createDirectories(parent);
         Path outFile = Paths.get(parent.toString(), className + Constants.JAVA_FILE_SUFFIX);
         BufferedWriter out = Files.newBufferedWriter(outFile);
